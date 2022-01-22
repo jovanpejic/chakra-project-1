@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { ChakraProvider, Flex, Heading, Stack, Image, Link, Icon, Text, Avatar } from '@chakra-ui/react'
+import { ChakraProvider, Flex, Heading, Stack, Image, Link, Icon, Text, Avatar, Box } from '@chakra-ui/react'
 import Logo from "./assets/piggy-logo-white.png"
 import {FiDollarSign, FiHome, FiPackage, FiPieChart} from "react-icons/fi"
 import './App.css'
 import avatar from "./assets/2496.jpeg"
 import MyChart from './MyChart'
+
 
 function App() {
   return (
@@ -78,12 +79,14 @@ function App() {
                 </Flex>
               </Flex>
             {/*Column 2 */}
-            <Flex w='55%' p='3%' flexDir='column' overflow='auto' minH='100vh' backgroundColor='#fff'>
+            <Flex w='55%' p="3%" mb={2} flexDir='column' overflow='auto' minH='100vh' backgroundColor='#fff'>
               <Heading fontWeight='normal' mb={4} letterSpacing='tight' >Welcome back, <Flex fontWeight='bold' display='inline-flex'>Jovan</Flex>
               </Heading>              
               <Text color='gray' fontSize='sm'>My Balance:</Text>
-              <Text color='black' fontWeight='bold'fontSize='2xl'>$5,500.00</Text>
-              <MyChart />
+              <Text mb={2} color='black' fontWeight='bold'fontSize='2xl'>$5,500.00</Text>
+              
+              <MyChart alignSelf="justify-left" />
+              
 
             </Flex>
             {/*Column 3 */}
