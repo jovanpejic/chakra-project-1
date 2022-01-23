@@ -1,13 +1,19 @@
-import React, { Component } from 'react'
-import { ChakraProvider, Flex, Heading, Stack, Image, Link, Icon, Text, Avatar, Box } from '@chakra-ui/react'
+import React, { Component, useState } from 'react'
+import { ChakraProvider, Flex, Heading, Stack, Image, Link, Icon, Text, Avatar, Box, IconButton, Table, Thead, Tr, Th, Tbody, Td, Divider } from '@chakra-ui/react'
 import Logo from "./assets/piggy-logo-white.png"
-import {FiDollarSign, FiHome, FiPackage, FiPieChart} from "react-icons/fi"
+import {FiCalendar, FiChevronDown, FiChevronsUp, FiDollarSign, FiHome, FiPackage, FiPieChart} from "react-icons/fi"
 import './App.css'
 import avatar from "./assets/2496.jpeg"
 import MyChart from './MyChart'
+import amazon from './assets/amazon.png'
+import starbucks from './assets/starbucks.svg'
+import youtube from './assets/youtube.png'
 
 
 function App() {
+  const [display, setDisplay] = useState('hide');
+
+
   return (
     <ChakraProvider>
       <Stack 
@@ -85,7 +91,138 @@ function App() {
               <Text color='gray' fontSize='sm'>My Balance:</Text>
               <Text mb={2} color='black' fontWeight='bold'fontSize='2xl'>$5,500.00</Text>
               
-              <MyChart alignSelf="justify-left" />
+              <MyChart />
+              <Flex justifyContent="space-between" mt={8}>
+                <Flex align='flex-end'>
+                  <Heading as='h2' size='lg' letterSpacing='tight'>Transactions</Heading>
+                  <Text fontSize='sm' color='gray' ml={4}>Apr 2021</Text>
+                </Flex>
+                <IconButton icon={<FiCalendar />} />
+              </Flex>
+              <Flex flexDir='column'>
+                <Flex overflow='auto'>
+                  <Table variant='unstyled' mt={4} size='sm'>
+                    <Thead>
+                      <Tr color='gray'>
+                        <Th>Name of transaction</Th>
+                        <Th>Category</Th>
+                        <Th isNumeric>Cashback</Th>
+                        <Th isNumeric>Amount</Th>
+                      </Tr>
+                    </Thead>
+                    <Tbody>
+                      <Tr>
+                        <Td>
+                          <Flex align='center'>
+                            <Avatar size='sm' mr={2} src={amazon} backgroundColor='white' border='none' />
+                            <Flex flexDir='column'>
+                              <Heading size='sm' letterSpacing='tight'>Amazon</Heading>
+                              <Text fontSize='sm' color='gray'> Apr 24, 2021 at 1:40pm</Text>
+                            </Flex>
+                          </Flex>
+                        </Td>
+                        <Td>Electronic Devices</Td>
+                        <Td isNumeric>+$2</Td>
+                        <Td isNumeric><Text fontWeight='bold' display='inline-table'>-$242</Text>.00</Td>
+                      </Tr>
+                      <Tr>
+                        <Td>
+                          <Flex align='center'>
+                            <Avatar size='sm' mr={2} src={starbucks} backgroundColor='white' border='none' />
+                            <Flex flexDir='column'>
+                              <Heading size='sm' letterSpacing='tight'>Starbucks</Heading>
+                              <Text fontSize='sm' color='gray'> Apr 24, 2021 at 1:40pm</Text>
+                            </Flex>
+                          </Flex>
+                        </Td>
+                        <Td>Cafe and restaurant</Td>
+                        <Td isNumeric>+$23</Td>
+                        <Td isNumeric><Text fontWeight='bold' display='inline-table'>-$32</Text>.00</Td>
+                      </Tr>
+                      <Tr>
+                        <Td>
+                          <Flex align='center'>
+                            <Avatar size='sm' mr={2} src={youtube} border='none' backgroundColor='white' />
+                            <Flex flexDir='column'>
+                              <Heading size='sm' letterSpacing='tight'>Youtube</Heading>
+                              <Text fontSize='sm' color='gray'> Apr 22, 2021 at 13:50pm</Text>
+                            </Flex>
+                          </Flex>
+                        </Td>
+                        <Td>Social Media</Td>
+                        <Td isNumeric>+$4</Td>
+                        <Td isNumeric><Text fontWeight='bold' display='inline-table'>-$121</Text>.00</Td>
+                      </Tr>
+                      {display == 'show' && 
+                      <>
+                      <Tr>
+                        <Td>
+                          <Flex align='center'>
+                            <Avatar size='sm' mr={2} src={amazon} backgroundColor='white' border='none' />
+                            <Flex flexDir='column'>
+                              <Heading size='sm' letterSpacing='tight'>Amazon</Heading>
+                              <Text fontSize='sm' color='gray'> Apr 24, 2021 at 1:40pm</Text>
+                            </Flex>
+                          </Flex>
+                        </Td>
+                        <Td>Electronic Devices</Td>
+                        <Td isNumeric>+$2</Td>
+                        <Td isNumeric><Text fontWeight='bold' display='inline-table'>-$242</Text>.00</Td>
+                      </Tr>
+                      <Tr>
+                        <Td>
+                          <Flex align='center'>
+                            <Avatar size='sm' mr={2} src={starbucks} backgroundColor='white' border='none' />
+                            <Flex flexDir='column'>
+                              <Heading size='sm' letterSpacing='tight'>Starbucks</Heading>
+                              <Text fontSize='sm' color='gray'> Apr 24, 2021 at 1:40pm</Text>
+                            </Flex>
+                          </Flex>
+                        </Td>
+                        <Td>Cafe and restaurant</Td>
+                        <Td isNumeric>+$23</Td>
+                        <Td isNumeric><Text fontWeight='bold' display='inline-table'>-$32</Text>.00</Td>
+                      </Tr>
+                      <Tr>
+                        <Td>
+                          <Flex align='center'>
+                            <Avatar size='sm' mr={2} src={youtube} border='none' backgroundColor='white' />
+                            <Flex flexDir='column'>
+                              <Heading size='sm' letterSpacing='tight'>Youtube</Heading>
+                              <Text fontSize='sm' color='gray'> Apr 22, 2021 at 13:50pm</Text>
+                            </Flex>
+                          </Flex>
+                        </Td>
+                        <Td>Social Media</Td>
+                        <Td isNumeric>+$4</Td>
+                        <Td isNumeric><Text fontWeight='bold' display='inline-table'>-$121</Text>.00</Td>
+                      </Tr>
+                      
+                      
+                      
+                      
+                      </>}
+                    </Tbody>
+
+                  </Table>
+
+                </Flex>
+                <Flex align='center'>
+                  <Divider />
+                  <IconButton 
+                    onClick={()=> {
+                      if (display == 'show' ) {
+                        setDisplay('none')
+                      } else {
+                        setDisplay('show')
+                      }
+                    }}
+                    icon={display== 'show' ? <FiChevronsUp /> : <FiChevronDown />} />
+                  <Divider />
+                </Flex>
+                
+              </Flex>
+              
               
 
             </Flex>
