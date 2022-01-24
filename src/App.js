@@ -1,7 +1,7 @@
 import React, { Component, useState } from 'react'
-import { ChakraProvider, Flex, Heading, Stack, Image, Link, Icon, Text, Avatar, Box, IconButton, Table, Thead, Tr, Th, Tbody, Td, Divider } from '@chakra-ui/react'
+import { ChakraProvider, Flex, Heading, Stack, Image, Link, Icon, Text, Avatar, Box, IconButton, Table, Thead, Tr, Th, Tbody, Td, Divider, InputGroup, InputLeftElement, Input } from '@chakra-ui/react'
 import Logo from "./assets/piggy-logo-white.png"
-import {FiCalendar, FiChevronDown, FiChevronsUp, FiDollarSign, FiHome, FiPackage, FiPieChart} from "react-icons/fi"
+import {FiBell, FiCalendar, FiChevronDown, FiChevronsUp, FiDollarSign, FiHome, FiPackage, FiPieChart, FiSearch} from "react-icons/fi"
 import './App.css'
 import avatar from "./assets/2496.jpeg"
 import MyChart from './MyChart'
@@ -227,9 +227,36 @@ function App() {
 
             </Flex>
             {/*Column 3 */}
-            <Flex p='3%' w='35%' backgroundColor='#F5F5F5' flexDir='column' overflow='auto'>Column</Flex>
+            <Flex p='3%' 
+                  w='35%' 
+                  backgroundColor='#F5F5F5' 
+                  flexDir='column' 
+                  overflow='auto'>
+                  <Flex alignContent='center'>
+                      <InputGroup bgColor='#fff' mb={4} border='none' borderColor='#fff' borderRadius='10px' mr={2}>
+                        <InputLeftElement pointerEvents='none' children={<FiSearch color='gray' />} />
+                        <Input type='number' placeholder='Search' borderRadius='10px' />
+                      </InputGroup>
+                      <IconButton icon={<FiBell />} fontSize='sm' bgColor='#fff' borderRadius='50%' p='10px' />
+                      <Flex
+                        w={30}
+                        h={25}
+                        bgColor='#b57295'
+                        borderRadius='50%'
+                        color='#fff'
+                        align='center'
+                        justify='center'
+                        ml='-3'
+                        mt='-2'
+                        zIndex='100'
+                        fontSize='xs'
 
-      
+                        >
+                          2
+                        </Flex>
+                  </Flex>
+                  <Heading fontSize='xl' letterSpacing='tight'>My Cards</Heading>
+            </Flex>
       </Stack>
     </ChakraProvider>
   );
