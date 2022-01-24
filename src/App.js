@@ -1,9 +1,12 @@
 import React, { Component, useState } from 'react'
-import { ChakraProvider, Flex, Heading, Stack, Image, Link, Icon, Text, Avatar, Box, IconButton, Table, Thead, Tr, Th, Tbody, Td, Divider, InputGroup, InputLeftElement, Input } from '@chakra-ui/react'
+import { AvatarGroup, ChakraProvider, Flex, Heading, Stack, Image, Link, Icon, Text, Avatar, Box, IconButton, Table, Thead, Tr, Th, Tbody, Td, Divider, InputGroup, InputLeftElement, Input, Button } from '@chakra-ui/react'
 import Logo from "./assets/piggy-logo-white.png"
-import {FiBell, FiCalendar, FiChevronDown, FiChevronsUp, FiDollarSign, FiHome, FiPackage, FiPieChart, FiSearch} from "react-icons/fi"
+import { FiPlus, FiCreditCard, FiBell, FiCalendar, FiChevronDown, FiChevronsUp, FiDollarSign, FiHome, FiPackage, FiPieChart, FiSearch} from "react-icons/fi"
 import './App.css'
 import avatar from "./assets/2496.jpeg"
+import avatar_2 from "./assets/avatar-2.jpeg"
+import avatar_3 from "./assets/avatar-3.png"
+import avatar_4 from "./assets/avatar-4.jpeg"
 import MyChart from './MyChart'
 import amazon from './assets/amazon.png'
 import starbucks from './assets/starbucks.svg'
@@ -12,63 +15,79 @@ import youtube from './assets/youtube.png'
 
 function App() {
   const [display, setDisplay] = useState('hide');
-
+  const [value, changeValue] = useState(1)
 
   return (
     <ChakraProvider>
       <Stack 
         display='flex'
         flexDir='row'
-        h='100vh'
+        h={[null, null, "100vh"]}
+        flexDir={["column", "column", "row"]}
+        maxW="2000px"
         >
             {/*Column 1 */}
             <Flex
-              w="15%"
+              w={["100%", "100%", "10%", "15%", "15%"]}
               flexDir='column'
               alignItems='center'
               backgroundColor='#020202'
               color='#fff'>
-                <Flex flexDir="column" justifyContent='space-between' h='100vh'>
+                <Flex flexDir="column" justifyContent='space-between' h={[null, null, "100vh"]}>
                     <Flex flexDir="column" as="nav">
-                        <Image src={Logo} alignSelf='center' w="50%" mt="20px" mb="100px"></Image>
-                        <Flex flexDir="column" align='flex-start' justifyContent='center' ml="25%">
-                          <Flex className='sideBar-items'>
-                            <Link>
+                        <Image src={Logo} alignSelf='center' w={["25%", "25%", "50%", "50%", "50%",]} mt="20px" mb="100px"></Image>
+                        <Flex flexDir={["row", "row", "column", "column", "column"]}
+                            align={["center", "center", "center", "flex-start", "flex-start"]}
+                            wrap={["wrap", "wrap", "nowrap", "nowrap", "nowrap"]}
+                            justifyContent="center">
+                          <Flex className='sideBar-items' ml={['0%', '0%', '5%', '25%', '25%']}
+                            >
+                            <Link display={["none", "none", "flex", "flex", "flex"]}>
                               <Icon as={FiHome} fontSize='2xl' className="active-icon" />
                             </Link>
-                            <Link _hover={{textDecor: 'none'}}>
-                              <Text className='active'>
+                            <Link _hover={{textDecor: 'none'}} display={["flex", "flex", "none", "flex", "flex"]}>
+                              <Text className='active' ml={['0','0','20%','20%','20%']}>
                                 Home
                               </Text>
                             </Link>
                           </Flex>
-                          <Flex className='sideBar-items'>
-                            <Link>
-                              <Icon as={FiPieChart} fontSize='2xl' />
+                          <Flex className='sideBar-items' ml={['5%', '5%', '5%', '25%', '25%'] }
+                            mt={['0%', '0', '15%', '15%', '15%']}
+                            >
+                            <Link display={["none", "none", "flex", "flex", "flex"]}
+                            >
+                              <Icon as={FiPieChart} fontSize='2xl'/>
                             </Link>
-                            <Link _hover={{textDecor: 'none'}}>
-                              <Text>
+                            <Link _hover={{textDecor: 'none'}} display={["flex", "flex", "none", "flex", "flex"]}>
+                              <Text ml={['0','0','20%','20%','20%']}>
                                 Credit
                               </Text>
                             </Link>
                           </Flex>
-                          <Flex className='sideBar-items'>
-                            <Link>
+                          <Flex className='sideBar-items' ml={['5%', '5%', '5%', '25%', '25%']}
+                            mt={['0%', '0', '15%', '15%', '15%']}>
+                            <Link display={["none", "none", "flex", "flex", "flex"]}>
                               <Icon as={FiDollarSign} fontSize='2xl' />
                             </Link>
-                            <Link _hover={{textDecor: 'none'}}>
-                              <Text>
+                            <Link _hover={{textDecor: 'none'}} display={["flex", "flex", "none", "flex", "flex"]}>
+                              <Text ml={['0','0','20%','20%','20%']}>
                                 Wallet
                               </Text>
                             </Link>
                           </Flex>
-                          <Flex className='sideBar-items'>
-                            <Link>
+                          <Flex className='sideBar-items' justifyContent='center' alignItems='center'
+                            ml={['5%', '5%', '5%', '25%', '25%']}
+                            mt={['0%', '0', '15%', '15%', '15%']}
+                            
+                            
+                            >
+                          
+                            <Link display={["none", "none", "flex", "flex", "flex"]}>
                               <Icon as={FiPackage} fontSize='2xl' />
                             </Link>
-                            <Link _hover={{textDecor: 'none'}}>
-                              <Text>
-                                Services
+                            <Link _hover={{textDecor: 'none'}} display={["flex", "flex", "none", "flex", "flex"]}>
+                              <Text ml={['0','0','20%','20%','20%']}>
+                                Service
                               </Text>
                             </Link>
 
@@ -85,7 +104,9 @@ function App() {
                 </Flex>
               </Flex>
             {/*Column 2 */}
-            <Flex w='55%' p="3%" mb={2} flexDir='column' overflow='auto' minH='100vh' backgroundColor='#fff'>
+            <Flex 
+              w={["100%", "100%", "60%", "60%", "55%"]} 
+              p="3%" mb={2} flexDir='column' overflow='auto' minH='100vh' backgroundColor='#fff'>
               <Heading fontWeight='normal' mb={4} letterSpacing='tight' >Welcome back, <Flex fontWeight='bold' display='inline-flex'>Jovan</Flex>
               </Heading>              
               <Text color='gray' fontSize='sm'>My Balance:</Text>
@@ -228,10 +249,11 @@ function App() {
             </Flex>
             {/*Column 3 */}
             <Flex p='3%' 
-                  w='35%' 
+                  w={["100%", "100%", "30%"]}
                   backgroundColor='#F5F5F5' 
                   flexDir='column' 
-                  overflow='auto'>
+                  overflow='auto'
+                  minW={[null, null, "300px", "300px", "400px"]}>
                   <Flex alignContent='center'>
                       <InputGroup bgColor='#fff' mb={4} border='none' borderColor='#fff' borderRadius='10px' mr={2}>
                         <InputLeftElement pointerEvents='none' children={<FiSearch color='gray' />} />
@@ -255,7 +277,159 @@ function App() {
                           2
                         </Flex>
                   </Flex>
-                  <Heading fontSize='xl' letterSpacing='tight'>My Cards</Heading>
+                  <Heading letterSpacing="tight">My Cards</Heading>
+                {value == 1 &&
+                    <Box
+                        borderRadius="25px"
+                        mt={4}
+                        w="100%"
+                        h="200px"
+                        bgGradient="linear(to-t, #B57295, #29259A)"
+                    >
+                        <Flex p="1em" color="#fff" flexDir="column" h="100%" justify="space-between">
+                            <Flex justify="space-between" w="100%" align="flex-start">
+                                <Flex flexDir="column">
+                                    <Text color="gray.400">Current Balance</Text>
+                                    <Text fontWeight="bold" fontSize="xl">$5,750.20</Text>
+                                </Flex>
+                                <Flex align="center">
+                                    <Icon mr={2} as={FiCreditCard} />
+                                    <Text>Rise.</Text>
+                                </Flex>
+                            </Flex>
+                            <Text mb={4}>**** **** **** 1289</Text>
+                            <Flex align="flex-end" justify="space-between">
+                                <Flex>
+                                    <Flex flexDir="column" mr={4}>
+                                        <Text textTransform="uppercase" fontSize="xs">Valid Thru</Text>
+                                        <Text fontSize="lg">12/23</Text>
+                                    </Flex>
+                                    <Flex flexDir="column">
+                                        <Text textTransform="uppercase" fontSize="xs">CVV</Text>
+                                        <Text fontSize="lg">***</Text>
+                                    </Flex>
+                                </Flex>
+                                <Icon as={FiCreditCard} />
+                            </Flex>
+                        </Flex>
+                    </Box>
+                  }
+                  {value == 2 &&
+                    <Box
+                        borderRadius="25px"
+                        mt={4}
+                        w="100%"
+                        h="200px"
+                        bgGradient="linear(to-t, #B57224, #29253B)"
+                    >
+                        <Flex p="1em" color="#fff" flexDir="column" h="100%" justify="space-between">
+                            <Flex justify="space-between" w="100%" align="flex-start">
+                                <Flex flexDir="column">
+                                    <Text color="gray.400">Current Balance</Text>
+                                    <Text fontWeight="bold" fontSize="xl">$2,250.20</Text>
+                                </Flex>
+                                <Flex align="center">
+                                    <Icon mr={2} as={FiCreditCard} />
+                                    <Text>Rise.</Text>
+                                </Flex>
+                            </Flex>
+                            <Text mb={4}>**** **** **** 1439</Text>
+                            <Flex align="flex-end" justify="space-between">
+                                <Flex>
+                                    <Flex flexDir="column" mr={4}>
+                                        <Text textTransform="uppercase" fontSize="xs">Valid Thru</Text>
+                                        <Text fontSize="lg">12/23</Text>
+                                    </Flex>
+                                    <Flex flexDir="column">
+                                        <Text textTransform="uppercase" fontSize="xs">CVV</Text>
+                                        <Text fontSize="lg">***</Text>
+                                    </Flex>
+                                </Flex>
+                                <Icon as={FiCreditCard} />
+                            </Flex>
+                        </Flex>
+                    </Box>
+                  }
+                  {value == 3 &&
+                    <Box
+                        borderRadius="25px"
+                        mt={4}
+                        w="100%"
+                        h="200px"
+                        bgGradient="linear(to-t, #D77295, #69259A)"
+                    >
+                        <Flex p="1em" color="#fff" flexDir="column" h="100%" justify="space-between">
+                            <Flex justify="space-between" w="100%" align="flex-start">
+                                <Flex flexDir="column">
+                                    <Text color="gray.400">Current Balance</Text>
+                                    <Text fontWeight="bold" fontSize="xl">$4,250.20</Text>
+                                </Flex>
+                                <Flex align="center">
+                                    <Icon mr={2} as={FiCreditCard} />
+                                    <Text>Rise.</Text>
+                                </Flex>
+                            </Flex>
+                            <Text mb={4}>**** **** **** 2734</Text>
+                            <Flex align="flex-end" justify="space-between">
+                                <Flex>
+                                    <Flex flexDir="column" mr={4}>
+                                        <Text textTransform="uppercase" fontSize="xs">Valid Thru</Text>
+                                        <Text fontSize="lg">12/23</Text>
+                                    </Flex>
+                                    <Flex flexDir="column">
+                                        <Text textTransform="uppercase" fontSize="xs">CVV</Text>
+                                        <Text fontSize="lg">***</Text>
+                                    </Flex>
+                                </Flex>
+                                <Icon as={FiCreditCard} />
+                            </Flex>
+                        </Flex>
+                    </Box>
+                  }
+                  <Flex justifyContent='center' mt={2}>
+                    <Button bgColor={value == 1 ? "gray.600": 'gray.400'} onClick={()=> changeValue(1)} size='xs' mx={1} />
+                    <Button bgColor={value == 2 ? "gray.600": 'gray.400'} onClick={()=> changeValue(2)} size='xs' mx={1}/>
+                    <Button bgColor={value == 3 ? "gray.600": 'gray.400'} onClick={()=> changeValue(3)} size='xs' mx={1}/>
+                  </Flex>
+                  <Flex flexDir="column" my={4}>
+                    <Flex justify="space-between" mb={2}>
+                        <Text>Balance</Text>
+                        <Text fontWeight="bold">$140.42</Text>
+                    </Flex>
+                    <Flex justify="space-between">
+                        <Text>Credit Limit</Text>
+                        <Text fontWeight="bold">$150.00</Text>
+                    </Flex>
+                    <Flex mt='10%'>
+                      <AvatarGroup size="md" max={3}>
+                          <Avatar src={avatar_2} />
+                          <Avatar src={avatar_3} />
+                          <Avatar src={avatar_4} />
+                          <Avatar src={avatar_4} />
+                          <Avatar src={avatar_4} />
+                          <Avatar src={avatar_4} />
+                      </AvatarGroup>
+                      <Avatar icon={<FiPlus />} ml={2} color="#fff" bgColor="gray.300" />
+                    </Flex>
+                    
+                </Flex>
+                <Text color="gray" mt={10} mb={2}>Card number</Text>
+                <InputGroup>
+                    <InputLeftElement
+                        pointerEvents="none"
+                        children={<FiCreditCard color="gray.700" />}
+                    />
+                    <Input type="number" placeholder="xxxx xxxx xxxx xxxx" />
+                </InputGroup>
+                <Text color="gray" mt={4} mb={2}>Sum</Text>
+                <InputGroup>
+                    <InputLeftElement
+                        pointerEvents="none"
+                        children={<FiDollarSign color="gray.700" />}
+                    />
+                    <Input type="number" placeholder="130.00" />
+                </InputGroup>
+                <Button mt={4} bgColor="blackAlpha.900" color="#fff" p={7} borderRadius={15}>Send money</Button>
             </Flex>
       </Stack>
     </ChakraProvider>

@@ -11,18 +11,10 @@
   font-size: large;
 }
 
-.sideBar-items p {
-  margin-left: 1em;
-}
-
 .sideBar-items:hover p {
   color: white;
 }
 
 .sideBar-items:hover svg {
   color: #b57295;
-}
-
-.sideBar-items:not(:last-child) {
-  margin-bottom: 1.5em;
 }
